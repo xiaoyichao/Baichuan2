@@ -454,6 +454,14 @@ model['lm_head.weight'] = lm_head_w
 torch.save(model, os.path.join(new_model_dir, 'pytorch_model.bin'))
 ```
 
+
+# paddlle 队列使用
+ 
+安装conda-pack 
+    conda install conda-pack
+
+conda pack -n xyc -o xyc.tar.gz  
+
 # 模型微调
 
 ## 依赖安装
