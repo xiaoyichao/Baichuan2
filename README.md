@@ -460,7 +460,7 @@ torch.save(model, os.path.join(new_model_dir, 'pytorch_model.bin'))
 
 ```shell
 git clone https://github.com/baichuan-inc/Baichuan2.git
-cd Baichuan2/fine-tune
+cd fine-tune
 pip install -r requirements.txt
 ```
 - 如需使用 LoRA 等轻量级微调方法需额外安装 [peft](https://github.com/huggingface/peft)
@@ -473,11 +473,12 @@ pip install -r requirements.txt
 训练数据：`data/belle_chat_ramdon_10k.json`，该样例数据是从 [multiturn_chat_0.8M](https://huggingface.co/datasets/BelleGroup/multiturn_chat_0.8M) 采样出 1 万条，并且做了格式转换。主要是展示多轮数据怎么训练，不保证效果。
 
 ```shell
+
 hostfile=""
-deepspeed --hostfile=$hostfile fine-tune.py  \
+deepspeed --hostfile=$hostfile --include localhost:1,2,3 fine-tune.py  \
     --report_to "none" \
     --data_path "data/belle_chat_ramdon_10k.json" \
-    --model_name_or_path "baichuan-inc/Baichuan2-7B-Base" \
+    --model_name_or_path "/ssd1/share/Baichuan2-7B-Base" \
     --output_dir "output" \
     --model_max_length 512 \
     --num_train_epochs 4 \
