@@ -7,7 +7,10 @@
         "enabled": "auto"
     },
     "zero_optimization": {
-        "stage": 1,
+        "stage": 3,
+        "offload_optimizer": {
+            "device": "cpu"
+        },
     "overlap_comm": true,
     "stage3_gather_16bit_weights_on_model_save": true
     },

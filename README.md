@@ -481,15 +481,16 @@ pip install -r requirements.txt
 训练数据：`data/belle_chat_ramdon_10k.json`，该样例数据是从 [multiturn_chat_0.8M](https://huggingface.co/datasets/BelleGroup/multiturn_chat_0.8M) 采样出 1 万条，并且做了格式转换。主要是展示多轮数据怎么训练，不保证效果。
 
 ```shell
+cd fine-tune
 
 hostfile=""
-deepspeed --hostfile=$hostfile --include localhost:1,2,3 fine-tune.py  \
+deepspeed --hostfile=$hostfile --include localhost:1,5 --master_port 29501  fine-tune.py  \
     --report_to "none" \
-    --data_path "data/belle_chat_ramdon_10k.json" \
+    --data_path "data/扩写.json" \
     --model_name_or_path "/ssd1/share/Baichuan2-7B-Base" \
     --output_dir "output" \
     --model_max_length 512 \
-    --num_train_epochs 4 \
+    --num_train_epochs 32 \
     --per_device_train_batch_size 16 \
     --gradient_accumulation_steps 1 \
     --save_strategy epoch \

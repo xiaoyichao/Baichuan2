@@ -11,6 +11,10 @@ messages.append({"role": "user", "content": "解释一下“温故而知新”"}
 response = model.chat(tokenizer, messages)
 print(response)
 
+prompt_outline_yuanwen2mk = '''给出大纲与原文，帮
+我根据原文生成大纲下对应的内容，这些内容最后会展示在ppt中，如果在'''
+
+
 # from transformers import AutoModelForCausalLM, AutoTokenizer
 # tokenizer = AutoTokenizer.from_pretrained("/ssd1/share//Baichuan2-13B-Base", trust_remote_code=True)
 # model = AutoModelForCausalLM.from_pretrained("/ssd1/share//Baichuan2-13B-Base", device_map="auto", trust_remote_code=True)
