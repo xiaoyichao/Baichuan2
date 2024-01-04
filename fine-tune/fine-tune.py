@@ -94,6 +94,7 @@ class SupervisedDataset(Dataset):
         labels += [self.ignore_index] * (self.model_max_length - len(labels))
         input_ids = torch.LongTensor(input_ids)
         labels = torch.LongTensor(labels)
+        # 在这里，它检查 input_ids 中的每个元素是否不等于 pad_token_id==0，如果不等于，则对应位置的值为 True，否则为 False。
         attention_mask = input_ids.ne(self.tokenizer.pad_token_id)
         return {
             "input_ids": input_ids,

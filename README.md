@@ -484,14 +484,14 @@ pip install -r requirements.txt
 cd fine-tune
 
 hostfile=""
-deepspeed --hostfile=$hostfile --include localhost:1,5 --master_port 29501  fine-tune.py  \
+deepspeed --hostfile=$hostfile --include localhost:1,5,6,7 --master_port 29501  fine-tune.py  \
     --report_to "none" \
     --data_path "data/扩写.json" \
     --model_name_or_path "/ssd1/share/Baichuan2-7B-Base" \
     --output_dir "output" \
-    --model_max_length 512 \
-    --num_train_epochs 32 \
-    --per_device_train_batch_size 16 \
+    --model_max_length 4096 \
+    --num_train_epochs 8 \
+    --per_device_train_batch_size 8 \
     --gradient_accumulation_steps 1 \
     --save_strategy epoch \
     --learning_rate 2e-5 \
